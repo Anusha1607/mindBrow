@@ -1,0 +1,58 @@
+<section>
+  <div class="container-fluid">
+    <div id="loginpage">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 pad-0">
+          <img class="back-img" src="assets/img/images.jpg">
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pad-0">
+          <div class="backclr">
+            <!-- login Page -->
+            <div class="card">
+              <div class="card-header">
+                {{ 'login.signin' | translate }}
+              </div>
+              <div class="card-body">
+                <form class="needs-validation" name="loginform" #loginform="ngForm"
+                  (ngSubmit)="loginform.valid && login()">
+                  <!----------- email ---------->
+                  <div class="loginpos">
+                    <input class="loginimput" type="text" placeholder="Email address" name="email" #email="ngModel"
+                      [(ngModel)]="logindata.email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required
+                      [ngClass]="{'invalid-in':email.valid || email.touched}">
+                    <div *ngIf="email.valid || email.touched || loginform.submitted">
+                      <div *ngIf="email.errors && email.errors.required || email.errors && email.errors.pattern"
+                        class="validation">
+                        !
+                      </div>
+                    </div>
+                  </div>
+                  <!----------- password ---------->
+                  <div class="loginpos">
+                    <img class="logcss eye" src="assets/img/eye.png" *ngIf="passIcon=='show'"
+                      (click)="hideShowPassword()">
+                    <img class="logcss eye" src="assets/img/hide.png" *ngIf="passIcon=='hide'"
+                      (click)="hideShowPassword()">
+                    <input class=" loginimput" [type]=pass placeholder="Password" name="password" #password="ngModel"
+                      [(ngModel)]="logindata.password" required>
+                    <div class="tooltipdata" *ngIf="password.valid || password.touched || loginform.submitted">
+                      <div class="tooltiptext" *ngIf="password.errors && password.errors.required">
+                        {{ 'login.reqpass' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <button type="submit" class="loginbutton"> {{ 'login.CapSignIn' | translate }}</button>
+                  </div>
+                </form>
+                <div class="divide" (click)="gotoregister()">
+                  {{ 'login.registerbtn' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+{
+  "global": {
+    "loading": "Loading..."
+  },
+  "header": {
+    "TITLE": "Hello Angular with ngx-translate!",
+    "SELECT": "Change languages",
+    "emp": "Employee",
+    "empdetail": "Details"
+  },
+  "emp": {
+    "add": "+ Add Employee",
+    "id": "Id",
+    "firstname": "FirstName",
+    "lastname": "LastName",
+    "addressline": "Address Line 1",
+    "area": "Area",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "mobile": "Mobile No.",
+    "dob": "DOB",
+    "count": "Count",
+    "addempHead": "Add Employee",
+    "editempHead": "Update Employee",
+    "valid": "Required",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "login": {
+    "Signup": "Sign Up",
+    "register": "Register Here",
+    "basic": "Basic",
+    "address": "Address",
+    "reqpass": "Password Required.",
+    "matchpass": "Password must match.",
+    "next": "Next",
+    "signin": "Sign In",
+    "submit": "Submit",
+    "CapSignIn": "SIGN IN",
+    "registerbtn": "Register"
+  }
+
+
+}

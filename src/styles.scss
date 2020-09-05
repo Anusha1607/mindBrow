@@ -1,0 +1,402 @@
+/* You can add global styles to this file, and also import other style files */
+// Regular Font
+@font-face {
+  font-family: ProximaNovaRegular;
+  src: url(assets/fonts/proximanova-regular-webfont.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Light Font
+@font-face {
+  font-family: ProximaNovaLight;
+  src: url(assets/fonts/proximanova-light-webfont.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Semi Bold Font
+@font-face {
+  font-family: ProximaNovaLtSemibold;
+  src: url(assets/fonts/proximanova-semibold-webfont.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Bold Font
+@font-face {
+  font-family: ProximaNovaBold;
+  src: url(assets/fonts/proximanova-bold-webfont.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+// Extra Bold Font
+@font-face {
+  font-family: ProximaNovaXbold;
+  src: url(assets/fonts/proximanova-extrabold-webfont.woff2) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --RegularFont: ProximaNovaRegular;
+  --LightFont: ProximaNovaLight;
+  --SemiboldFont: ProximaNovaLtSemibold;
+  --BoldFont: ProximaNovaBold;
+  --XboldFont: ProximaNovaXbold;
+  // color
+  --AddImportBtn: #fff;
+  --btnColor: rgba(27, 82, 151, 1);
+  --hoverColor: rgba(0, 68, 135, 1);
+  --usertype: #9744d0;
+  --red: #df6e72;
+  --blue: #8488ad;
+  --skyblue: #8ec3d5;
+  --alertred: #ec4844;
+  --success: #39ae0b;
+  --error: #d91e1e;
+}
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+// loader css
+
+.loading-screen-wrapper {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 90%;
+  height: 100%;
+  display: block;
+}
+
+.notavail {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-top: 12px;
+}
+
+.loading-screen-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.spinner {
+  margin-left: 10px;
+}
+
+.spinner>div {
+  width: 10px;
+  height: 10px;
+  background-color: #333;
+  margin-right: 5px;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.load {
+  animation: blinker 1.4s ease infinite;
+  opacity: 1;
+}
+
+.load {
+  color: black;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica,
+    sans-serif;
+  font-size: 25px;
+}
+
+.modal-lg {
+  max-width: 595px !important;
+
+  .modal-content {
+    border-radius: 0 !important;
+  }
+}
+
+*:focus {
+  outline: 0;
+  box-shadow: unset !important;
+}
+
+.pad-0 {
+  padding: 0px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pad {
+  padding: 11px 0px 11px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+}
+
+table {
+  width: 100%;
+}
+
+.tdwidth {
+  width: 1%;
+}
+
+thead tr {
+  border-bottom: 3px solid #eee;
+}
+
+thead td {
+  font-size: 14px;
+  padding: 7px 28px;
+  font-family: ProximaNovaLtSemibold;
+}
+
+tbody td {
+  padding: 11px 14px 11px 28px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  a {
+    color: #2c7bd0 !important;
+  }
+}
+
+tbody tr {
+  border-bottom: 1px solid #eceff1;
+}
+
+.pad-10 {
+  padding: 0px 10px;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.mr-tp {
+  position: sticky;
+  bottom: 0px;
+  background: white;
+  margin-top: 20px;
+  margin-right: 0px !important;
+}
+
+.count {
+  font-weight: 400;
+  margin-left: 28px;
+
+  b {
+    font-family: ProximaNovaLtSemibold;
+  }
+}
+
+.mylead {
+  z-index: 111 !important;
+}
+
+.validation {
+  background: #da1414;
+  width: 19px;
+  height: 19px;
+  border-radius: 14px;
+  color: #ffffff;
+  font-weight: bold;
+  position: absolute;
+  top: 8px;
+  right: 50px;
+}
+
+.requiredfield {
+  border-left: 3px solid #df0707 !important;
+}
+
+.addvalidation {
+  color: #d72e3d;
+  font-size: 11px;
+  font-family: ProximaNovaRegular;
+}
+
+.cdk-overlay-container {
+  z-index: 11000 !important;
+}
+
+.owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-calendar-table-divider {
+  display: none;
+}
+
+.owl-dt-calendar-table {
+  position: absolute !important;
+  left: 0px !important;
+}
+
+.btn-outline-secondary {
+  border: 1px solid rgb(221, 219, 218);
+  color: var(--btnColor);
+  margin-right: 8px;
+  background-color: rgb(251, 252, 253);
+}
+
+.btn-outline-secondary:hover {
+  background-color: rgb(244, 246, 249);
+  color: var(--btnColor);
+  border: 1px solid rgb(221, 219, 218);
+}
+
+.btn-primary {
+  background-color: var(--btnColor);
+  border-color: var(--btnColor);
+  color: rgb(255, 255, 255);
+}
+
+.btn-primary:hover {
+  background-color: var(--hoverColor);
+  color: rgb(255, 255, 255);
+}
+
+//------ success And error notification ----------------------------
+#success-snackbar {
+  visibility: hidden;
+  min-width: 500px;
+  margin-left: -125px;
+  background-color: #68e385;
+  color: #155724;
+  text-align: center;
+  position: fixed;
+  z-index: 10000;
+  left: 50%;
+  top: 52.3px;
+  font-size: 17px;
+  border: 1px solid #41ac41;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+
+  span {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .successhead {
+    position: relative;
+    bottom: 0px;
+    padding-left: 30px;
+    font-size: 17px;
+    font-family: ProximaNovaLtSemibold;
+  }
+
+  .successmsg {
+    position: relative;
+    bottom: 6px;
+    font-size: 15px;
+    padding-left: 30px;
+    font-family: ProximaNovaRegular;
+    text-transform: capitalize;
+  }
+}
+
+#success-snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#error-snackbar {
+  visibility: hidden;
+  min-width: 500px;
+  margin-left: -125px;
+  background-color: #f8d7da;
+  color: #721c24;
+  text-align: center;
+  position: fixed;
+  z-index: 10000;
+  left: 50%;
+  top: 52.3px;
+  font-size: 17px;
+  border: 1px solid #f18080;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+
+  span {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .successhead {
+    position: relative;
+    bottom: 0px;
+    padding-left: 30px;
+    font-size: 17px;
+    font-family: ProximaNovaLtSemibold;
+  }
+
+  .successmsg {
+    position: relative;
+    bottom: 6px;
+    font-size: 15px;
+    padding-left: 30px;
+    font-family: ProximaNovaRegular;
+    text-transform: capitalize;
+  }
+}
+
+#error-snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}

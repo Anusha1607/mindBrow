@@ -1,0 +1,215 @@
+<section>
+  <div class="container-fluid">
+    <div class="mylead">
+      <div class="row pad">
+        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+          <button class="btncss" (click)="openEmp()">{{ 'emp.add' | translate }}</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pad-0">
+        <div class="table-responsive tablelead">
+          <table>
+            <thead>
+              <tr>
+                <td>
+                  {{ 'emp.id' | translate }}
+                </td>
+                <td>
+                  {{ 'emp.firstname' | translate }}
+                </td>
+                <td>
+                  {{ 'emp.lastname' | translate }}
+                </td>
+                <td>
+                  {{ 'emp.mobile' | translate }}
+                </td>
+                <td>
+                  {{ 'emp.dob' | translate }}
+                </td>
+                <td>
+                  {{ 'emp.city' | translate }}
+                </td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let candata of candidateData | paginate: { itemsPerPage: 10, currentPage: p } | filter:searchText">
+                <td>{{candata.id}}</td>
+                <td>{{candata.firstname}}</td>
+                <td>{{candata.lastname}}</td>
+                <td>{{candata.mobile}}</td>
+                <td>{{candata.dateofbirth}}</td>
+                <td>{{candata.address.city}}</td>
+                <td><i class="fa fa-pencil pencilcss" aria-hidden="true" (click)="goToedit()"></i></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row mr-tp">
+            <div class="col-3">
+              <p class="count">{{ 'emp.count' | translate }} :&nbsp;&nbsp;<b><span
+                    *ngIf="listCount>0">{{listCount}}</span>
+                  <span *ngIf="!listCount">0</span></b></p>
+            </div>
+            <div class="col-9 text-right">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- quick add account -->
+<div class="modal fade" id="employeeModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  data-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="flag == false">{{ 'emp.addempHead' | translate }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="flag == true">{{ 'emp.editempHead' | translate }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <form class="needs-addvalidation" name="empform" #empform="ngForm"
+        (ngSubmit)="empform.valid && addquickEmp(empform)">
+        <div class="modal-body">
+          <!------ first name-->
+          <div class="form-group row">
+            <label for="inputPassword3"
+              class="col-sm-3 col-form-label text-right">{{ 'emp.firstname' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" name="first" [(ngModel)]="empData.firstname" #first="ngModel"
+                class="form-control requiredfield" required>
+              <div *ngIf="first.valid || first.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="first.errors && first.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ last name-->
+          <div class="form-group row">
+            <label for="inputPassword3"
+              class="col-sm-3 col-form-label text-right">{{ 'emp.lastname' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" name="last" [(ngModel)]="empData.lastname" #last="ngModel"
+                class="form-control requiredfield" required>
+              <div *ngIf="last.valid || last.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="last.errors && last.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ mobile -->
+          <div class="form-group row">
+            <label for="inputPassword3"
+              class="col-sm-3 col-form-label text-right">{{ 'emp.mobile' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control requiredfield" name="mobile" #mobile="ngModel"
+                [(ngModel)]="empData.mobileNo" required pattern="{{constant.mobileNoPattern}}" maxlength="10"
+                (keypress)="validatePattern($event)">
+              <div *ngIf="mobile.valid || mobile.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="mobile.errors && mobile.errors.required || mobile.errors && mobile.errors.pattern"
+                  class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ dob -->
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label text-right">{{ 'emp.dob' | translate }}</label>
+            <div class="col-sm-8">
+              <input class="form-control requiredfield" [(ngModel)]="empData.dateofbirth" name="dob" #dob="ngModel"
+                autocomplete="off" [owlDateTime]="dobdate" [owlDateTimeTrigger]="dobdate" required>
+              <owl-date-time [pickerType]="'calendar'" #dobdate></owl-date-time>
+              <div *ngIf="dob.valid || dob.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="dob.errors && dob.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ address line -->
+          <div class="form-group row">
+            <label for="inputPassword3"
+              class="col-sm-3 col-form-label text-right">{{ 'emp.addressline' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" name="lineone" [(ngModel)]="address.addressLine" #lineone="ngModel"
+                class="form-control requiredfield" required>
+              <div *ngIf="lineone.valid || lineone.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="lineone.errors && lineone.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ area -->
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label text-right">{{ 'emp.area' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" name="areaone" [(ngModel)]="address.area" #areaone="ngModel"
+                class="form-control requiredfield" required>
+              <div *ngIf="areaone.valid || areaone.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="areaone.errors && areaone.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ city -->
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label text-right">{{ 'emp.city' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" name="cityone" [(ngModel)]="address.city" #cityone="ngModel"
+                class="form-control requiredfield" required>
+              <div *ngIf="cityone.valid || cityone.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="cityone.errors && cityone.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ state -->
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label text-right">{{ 'emp.state' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" name="stateone" [(ngModel)]="address.state" #stateone="ngModel"
+                class="form-control requiredfield" required>
+              <div *ngIf="stateone.valid || stateone.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="stateone.errors && stateone.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!------ country -->
+          <div class="form-group row">
+            <label for="inputPassword3"
+              class="col-sm-3 col-form-label text-right">{{ 'emp.country' | translate }}</label>
+            <div class="col-sm-8">
+              <input type="text" name="cntry" [(ngModel)]="address.country" #cntry="ngModel"
+                class="form-control requiredfield" required>
+              <div *ngIf="cntry.valid || cntry.touched || empform.submitted" class="addvalidation">
+                <div *ngIf="cntry.errors && cntry.errors.required" class="addvalidation">
+                  {{ 'emp.valid' | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer mylead">
+          <button type="button" class="btn btn-outline-secondary"
+          (click)="cancelForm(empform)">{{ 'emp.cancel' | translate }}</button>
+          <button type="submit" class="btn btn-primary">{{ 'emp.save' | translate }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

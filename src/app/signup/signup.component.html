@@ -1,0 +1,221 @@
+<div class="wrapper">
+  <div class="header header-filter">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 pad-0">
+          <img class="back-img" src="assets/img/images.jpg">
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pad-0">
+          <div class="login-form-div">
+            <div class="container-fluid backclr">
+              <div class="row">
+                <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3">
+                </div>
+                <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                  <div class="send-request-head">{{ 'login.register' | translate }}</div>
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-head tabdiv">
+                      <div class="display-flex">
+                        <div class="tab-div">
+                          <div class="tabLable" [ngClass]="{'tabLableActive':tab == 'inform'}"
+                            (click)="gobasic('inform')">{{ 'login.basic' | translate }}</div>
+                        </div>
+                        <div class="tab-div">
+                          <div class="tabLable" [ngClass]="{'tabLableActive':tab == 'addre'}">
+                            {{ 'login.address' | translate }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--- general info tab ---->
+                  <div class="request-form" *ngIf="tab == 'inform'">
+                    <div class="request-form-started">
+                      <form class="needs-validation" name="mangform" #mangform="ngForm"
+                        (ngSubmit)="mangform.valid && goToNext(mangform,managerData)">
+                        <!---------------- first name -------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="First Name" name="firstname"
+                            #firstname="ngModel" [(ngModel)]="managerData.firstName" required>
+                          <div *ngIf="firstname.valid || firstname.touched || mangform.submitted">
+                            <div *ngIf="firstname.errors && firstname.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!---------------- last name -------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="Last Name" name="lastname"
+                            #lastname="ngModel" [(ngModel)]="managerData.lastName" required>
+                          <div *ngIf="lastname.valid || lastname.touched || mangform.submitted">
+                            <div *ngIf="lastname.errors && lastname.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!---------------- email -------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="Email address" name="email"
+                            #email="ngModel" [(ngModel)]="managerData.email"
+                            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                          <div *ngIf="email.valid || email.touched || mangform.submitted">
+                            <div *ngIf="email.errors && email.errors.required || email.errors && email.errors.pattern"
+                              class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!---------------- DOB -------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" [(ngModel)]="managerData.dateofbirth" name="date" #date="ngModel"
+                            [owlDateTime]="startdate" placeholder="DOB" [owlDateTimeTrigger]="startdate" required>
+                          <owl-date-time [pickerType]="'calendar'" #startdate></owl-date-time>
+                          <div *ngIf="date.valid || date.touched || mangform.submitted">
+                            <div *ngIf="date.errors && date.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!-------------- company -------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="Company" name="company" #company="ngModel"
+                            [(ngModel)]="managerData.company" required>
+                          <div *ngIf="company.valid || company.touched || mangform.submitted">
+                            <div *ngIf="company.errors && company.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!------------------ password ------------------------->
+                        <div class="loginpos relative-div">
+                          <img class="logcss eye" src="assets/img/eye.png" *ngIf="passIcon3=='show'"
+                            (click)="hideShowPassword3()">
+                          <img class="logcss eye" src="assets/img/hide.png" *ngIf="passIcon3=='hide'"
+                            (click)="hideShowPassword3()">
+                          <input class="loginimput" [type]="pass3" placeholder="Type Your New Password" name="password"
+                            #password="ngModel" [(ngModel)]="managerData.password" required>
+                          <div class="tooltipdata" *ngIf="password.valid || password.touched || mangform.submitted">
+                            <div class="tooltiptext" *ngIf="password.errors && password.errors.required">
+                              {{ 'login.reqpass' | translate }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="loginpos relative-div">
+                          <img class="logcss eye" src="assets/img/eye.png" *ngIf="passIcon4=='show'"
+                            (click)="hideShowPassword4()">
+                          <img class="logcss eye" src="assets/img/hide.png" *ngIf="passIcon4=='hide'"
+                            (click)="hideShowPassword4()">
+                          <input class="loginimput" [type]="pass4" placeholder="Confirm Password" name="confmpass"
+                            #confmpass="ngModel" [(ngModel)]="managerData.confmpass" required>
+                          <div class="tooltipdata"
+                            *ngIf="managerData.password && managerData.confmpass && managerData.password != managerData.confmpass">
+                            <div class="tooltiptext">
+                              {{ 'login.matchpass' | translate }}
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <button type="submit" class="loginbutton">{{ 'login.next' | translate }}</button>
+                        </div>
+                      </form>
+                      <div class="divide" (click)="goToSign()">
+                        {{ 'login.signin' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <!--- address tab ---->
+                  <div class="request-form" *ngIf="tab == 'addre'">
+                    <div class="request-form-started">
+                      <form class="needs-validation" name="mangform" #mangform="ngForm"
+                        (ngSubmit)="mangform.valid && doSingUp(mangform,address)">
+                        <!------------------ house no ------------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="House no" name="house" #house="ngModel"
+                            [(ngModel)]="address.addressLine1" required>
+                          <div *ngIf="house.valid || house.touched || mangform.submitted">
+                            <div *ngIf="house.errors && house.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!------------------ address no 1 ------------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="Address Line 1" name="addressLine2"
+                            #addressLine2="ngModel" [(ngModel)]="address.addressLine2" required>
+                          <div *ngIf="addressLine2.valid || addressLine2.touched || mangform.submitted">
+                            <div *ngIf="addressLine2.errors && addressLine2.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!------------------ area ------------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="Area" name="area" #area="ngModel"
+                            [(ngModel)]="address.area" required>
+                          <div *ngIf="area.valid || area.touched || address.submitted">
+                            <div *ngIf="area.errors && area.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!------------------ pincode ------------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="number" placeholder="Postal Code" name="pincode"
+                            #pincode="ngModel" [(ngModel)]="address.pinCode" required maxlength="6">
+                          <div *ngIf="pincode.valid || pincode.touched || mangform.submitted">
+                            <div
+                              *ngIf="pincode.errors && pincode.errors.required || pincode.errors && pincode.errors.maxlength"
+                              class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!------------------ city ------------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="City" name="city" #city="ngModel"
+                            [(ngModel)]="address.city" required>
+                          <div *ngIf="city.valid || city.touched || address.submitted">
+                            <div *ngIf="city.errors && city.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!------------------ state ------------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="State" name="state" #state="ngModel"
+                            [(ngModel)]="address.state" required>
+                          <div *ngIf="state.valid || state.touched || address.submitted">
+                            <div *ngIf="state.errors && state.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <!------------------ country ------------------------->
+                        <div class="loginpos">
+                          <input class="loginimput" type="text" placeholder="Country" name="country" #country="ngModel"
+                            [(ngModel)]="address.country" required>
+                          <div *ngIf="country.valid || country.touched || mangform.submitted">
+                            <div *ngIf="country.errors && country.errors.required" class="validation">
+                              !
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <button type="submit" class="loginbutton">{{ 'login.submit' | translate }}</button>
+                        </div>
+                      </form>
+                      <div class="divide" (click)="goToSign()">
+                        {{ 'login.signin' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-1 col-sm-1 col-md-2 col-lg-3 col-xl-3">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

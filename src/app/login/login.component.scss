@@ -1,0 +1,152 @@
+*:focus {
+  outline: none;
+}
+
+.backclr {
+  background: #f9f9f9;
+}
+
+.back-img {
+  width: 100%;
+  height: 100vh;
+}
+
+.divide {
+  float: right;
+  color: #43a1a8;
+  padding-right: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: #42a0a7;
+}
+
+.card-body {
+  input {
+    cursor: pointer;
+  }
+}
+
+.tooltipdata {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted #da1414;
+}
+
+.tooltipdata .tooltiptext {
+  width: 200px;
+  background-color: #da1414;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 19px;
+  right: 20px;
+  margin-left: -60px;
+}
+
+.tooltipdata .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #da1414 transparent;
+}
+
+#loginpage {
+  .logcss {
+    position: absolute;
+    top: 10px;
+    left: 52px;
+  }
+
+  .eye {
+    position: absolute;
+    top: 10px;
+    left: 80%;
+    width: 19px;
+  }
+
+
+  .loginpos {
+    position: relative;
+  }
+
+  .card {
+    width: 25rem;
+    text-align: center;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: transparent;
+    border: none;
+    margin-top: 15%;
+  }
+
+  .loginimput {
+    background-color: transparent;
+    border-radius: 0px;
+    border: 1px solid #43a1a8;
+    border-radius: 21px;
+    padding-left: 20px;
+    padding-top: 6px;
+    padding-bottom: 5px;
+    width: 80%;
+    margin-bottom: 15px;
+    color: #504848;
+  }
+
+  .loginimput::placeholder {
+    color: #504848;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .loginbutton {
+    background-color: #43a1a8;
+    border: 1px solid #43a1a8;
+    width: 80%;
+    border-radius: 21px;
+    padding: 7px 10px;
+    margin-bottom: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    font-size: 19px;
+    color: #504848;
+    font-weight: bold;
+  }
+
+  //---------- to remove arraow ffrom number input -----------------
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  // Firefox //
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+}

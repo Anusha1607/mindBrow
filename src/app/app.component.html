@@ -1,0 +1,6 @@
+<app-header *ngIf="router.url !== '/web/login' && router.url !== '/web/signup'"></app-header>
+<div style="position: relative;">
+  <div id="success-snackbar"></div>
+  <div id="error-snackbar"></div>
+</div>
+<router-outlet></router-outlet>

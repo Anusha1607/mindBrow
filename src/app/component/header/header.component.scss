@@ -1,0 +1,44 @@
+.navbar {
+  padding: 0px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: white;
+}
+
+.navbar-dark {
+  background: black;
+}
+
+.navbar-nav {
+  width: 90.5%;
+
+  a {
+    display: inline-block;
+    padding: 6.5px 10px;
+    color: #fff;
+    font-family: ProximaNovaLtSemibold, sans-serif;
+    font-size: 14.9px;
+    letter-spacing: 0.5px;
+    letter-spacing: .5px;
+    padding: 15px;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link.active:visited {
+  color: #fc8506 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+  background-color: rgba(255, 255, 255, .2);
+  color: #fc8506;
+}
+
+.logoutcss {
+  background: white;
+  padding: 3px 7px;
+  border-radius: 5px;
+  color: #619dbf;
+  font-weight: 700;
+  cursor: pointer;
+}
